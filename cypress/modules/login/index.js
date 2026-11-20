@@ -11,7 +11,16 @@ function verificarSeLoginFoiEfetuadoComSucesso(name){
       .contains(name)
 }
 
+function verificarSeMensagemDeErroFoiExibidaNoLogin(){
+cy.get('form[action*="login"] > p')
+      .should('exist')
+      .should('be.visible')
+      .should('contain', 'Your email or password is incorrect!')
+      .and('contain.text', 'Your email or password is incorrect!')
+}
+
 module.exports = {
  preencherLogin,
- verificarSeLoginFoiEfetuadoComSucesso
+ verificarSeLoginFoiEfetuadoComSucesso,
+ verificarSeMensagemDeErroFoiExibidaNoLogin
 }

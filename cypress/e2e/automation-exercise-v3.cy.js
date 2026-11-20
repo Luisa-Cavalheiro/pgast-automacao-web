@@ -28,11 +28,13 @@ describe('Automation Exercise', () => {
   });
 
   it('CT 3 - Efetuar Login de Usuário email e senha INCORRETOS', () => {
+    var senhaIncorreta = '54321';
+
     cy.visit('/login')
 
-    preencherLogin('pgats-aut-test-1791030872114@mail.com', '54321')
+    login.preencherLogin('pgats-aut-test-1791030872114@mail.com', senhaIncorreta)
    
-    verificarSeMensagemDeErroFoiExibidaNoLogin()
+    login.verificarSeMensagemDeErroFoiExibidaNoLogin()
     
   });
 
