@@ -1,25 +1,32 @@
 name: PGATS Automation Web
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main]
+  workflow_dispatch:
 
 jobs:
-  cypress-run:
+  e2e-tests:
+
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/actions-setup@v4
+      - name: Node version
+        run: node --version
+
+      - name: Instalando dependências
+        run: npm install
+
+      - name: Executando os testes
+        run: npx cypress run
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
-          node-version: '22' 
-      - name: Install dependencies and run Cypress
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome 
+          name: relatorios
+          path: |
+            cypress/reports
+            cypress/screenshots
+            cypress/videos
         
