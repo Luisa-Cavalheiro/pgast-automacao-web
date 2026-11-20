@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 const cadastro = require('../modules/cadastro/index')
+const login = require('../modules/login/index')
 
 describe('Automation Exercise', () => {
 
@@ -20,9 +21,9 @@ describe('Automation Exercise', () => {
 
     cy.visit('/login')
 
-    preencherLogin('pgats-aut-test-1791030872114@mail.com', '12345')
+    login.preencherLogin('pgats-aut-test-1795215430042@mail.com', '12345')
 
-    verificarSeLoginFoiEfetuadoComSucesso()
+    login.verificarSeLoginFoiEfetuadoComSucesso('PGATS Aut')
 
   });
 

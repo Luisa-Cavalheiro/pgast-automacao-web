@@ -38,7 +38,7 @@ function preencherCadastro() {
   cy.get('[data-qa="create-account"]').click()
 }
 
-function verificarSeCadastroFoiEfetuadoComSucesso() {npx 
+function verificarSeCadastroFoiEfetuadoComSucesso() {
   cy.get('[data-qa="account-created"]')
     .should('be.visible')
     .and('contain', 'Account Created!')
