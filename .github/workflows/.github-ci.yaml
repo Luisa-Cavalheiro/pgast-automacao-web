@@ -1,4 +1,4 @@
-name: PGATS Automation Web
+name: e2e-tests
 
 on:
   workflow_dispatch:
