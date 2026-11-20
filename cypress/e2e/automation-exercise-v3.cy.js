@@ -23,7 +23,7 @@ describe('Automation Exercise', () => {
 
     login.preencherLogin('pgats-aut-test-1795215430042@mail.com', '12345')
 
-    login.verificarSeLoginFoiEfetuadoComSucesso('PGATS Aut')
+    login.verificarSeLoginFoiEfetuadoComSucesso()
 
   });
 
@@ -41,11 +41,11 @@ describe('Automation Exercise', () => {
   it('CT 4 - Efetuar Logout', () => {
     cy.visit('/login')
 
-    preencherLogin('pgats-aut-test-1791030872114@mail.com', '12345')
+    login.preencherLogin('pgats-aut-test-1791030872114@mail.com', '12345')
 
-    efetuarLogout()
+    login.efetuarLogout()
   
-    verificarSeOUsuarioFoiDeslogado()
+    login.verificarSeOUsuarioFoiDeslogado()
 
   });
 

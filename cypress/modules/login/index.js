@@ -6,9 +6,11 @@ function preencherLogin(email, senha) {
 }
 
 function verificarSeLoginFoiEfetuadoComSucesso(name){
+    cy.contains('.navbar-nav li', 'PGATS Aut')
 
     cy.get('.navbar-nav li')
-      .contains(name)
+      .contains('PGATS Aut')
+      .should('be.visible')
 }
 
 function verificarSeMensagemDeErroFoiExibidaNoLogin(){
@@ -19,8 +21,24 @@ cy.get('form[action*="login"] > p')
       .and('contain.text', 'Your email or password is incorrect!')
 }
 
+function efetuarLogout(){
+  cy.get('a[href*="logout"]')
+      .should('be.visible')
+      .click()
+}
+
+function verificarSeOUsuarioFoiDeslogado(){
+   cy.get('.login-form > h2').should('be.visible')
+    cy.get('a[href*="logout"]').should('not.exist')
+    cy.get('[action*="login"]').should('be.visible');
+    cy.url().should('include', 'login')
+}
+
 module.exports = {
  preencherLogin,
  verificarSeLoginFoiEfetuadoComSucesso,
- verificarSeMensagemDeErroFoiExibidaNoLogin
+ verificarSeMensagemDeErroFoiExibidaNoLogin,
+ efetuarLogout,
+ verificarSeOUsuarioFoiDeslogado
+
 }
