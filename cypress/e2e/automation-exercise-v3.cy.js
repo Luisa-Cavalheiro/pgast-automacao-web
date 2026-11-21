@@ -60,15 +60,25 @@ describe('Automation Exercise', () => {
 
   });
 
-  it.only('CT 8 - Verifica página de produtos e detalhes de um produto', () => {
+  it('CT 8 - Verificar página de produtos e detalhes de um produto', () => {
     cy.visit('/')
 
     produtos.acessarProdutos()
+
+    produtos.clicarEmProduto()
   
-    produtos.verificarDetalhesDeProduto()
+    produtos.verificarDetalhesDeProduto('/product_details/1')
+
   });
 
-   it('CT 9', () => {
+   it.only('CT 9 - Buscar produto', () => {
+      cy.visit('/')
+
+    produtos.acessarProdutos()
+
+    produtos.buscarProduto('top for women', '/products?search=top%20for%20women')
+
+    produtos.verificarProdutos()
 
   });
 

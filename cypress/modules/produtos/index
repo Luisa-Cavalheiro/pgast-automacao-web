@@ -4,13 +4,32 @@ function acessarProdutos(){
    cy.get('.features_items').should('exist')
 }
 
-function verificarDetalhesDeProduto(){
+function clicarEmProduto(){
    cy.get(':nth-child(3) > .product-image-wrapper > .choose > .nav > li > a').click()
-   cy.url().should('include', '/product_details/1')
+}
+
+function verificarDetalhesDeProduto(path){
+   cy.url().should('include', path)
    cy.get(':nth-child(5) > .btn').should('be.visible')
+}
+
+function buscarProduto(produto, path){
+    cy.get('#search_product').type(produto)
+    cy.get('#submit_search').click()
+    cy.url().should('include', path)
+    cy.get('.title').should('contain.text', 'Searched Products')
+}
+
+function verificarProdutos(){
+    cy.get('.title').should('contain.text', 'Searched Products')
+    cy.get('.features_items').should('exist')
+    .and('be.visible')
 }
 
 module.exports = {
 acessarProdutos,
-verificarDetalhesDeProduto
+clicarEmProduto, 
+verificarDetalhesDeProduto,
+buscarProduto,
+verificarProdutos
 }
