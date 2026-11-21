@@ -1,0 +1,43 @@
+function acessarCarrinho(){
+   cy.get('.shop-menu > .nav > :nth-child(3) > a').click()
+   cy.url().should('include', '/view_cart')
+   cy.get('#cart_items > :nth-child(1)').should('exist')
+   .and('be.visible')
+}
+
+function fazerPagamento(){
+    cy.get(':nth-child(7) > .btn').click()
+    
+    cy.get('[data-qa="name-on-card"]').type('Teste primeira compra')
+    cy.get('[data-qa="card-number"]').type('5567990080222')
+    cy.get('[data-qa="cvc"]').type('123')
+    cy.get('[data-qa="expiry-month"]').type('7')
+    cy.get('[data-qa="expiry-year"]').type('2030')
+
+    cy.get('[data-qa="pay-button"]').click()
+
+}
+
+function revisarPedido(){
+    cy.get('#address_invoice > .address_firstname').should('contain.text', 'Mrs. PGATS Aut')
+    cy.get('#address_invoice > .address_country_name').should('contain.text', 'United States')
+    cy.get('#address_invoice > .address_phone').should('contain.text', '999999')
+}
+
+function inserirDescricao(text){
+    cy.get('.form-control').type(text)
+}
+
+function verificarPagamento(){
+    cy.get('[data-qa="order-placed"] > b').should('exist')
+    .and('be.visible')
+    cy.get('.col-sm-9 > p').should('contain.text', 'Congratulations! Your order has been confirmed!' )
+}
+
+module.exports = {
+    acessarCarrinho,
+    fazerPagamento,
+    revisarPedido,
+    inserirDescricao,
+    verificarPagamento
+}

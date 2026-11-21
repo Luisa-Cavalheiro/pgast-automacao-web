@@ -3,7 +3,7 @@
 const cadastro = require('../modules/cadastro/index')
 const login = require('../modules/login/index')
 const produtos = require('../modules/produtos/index')
-
+const carrinho = require('../modules/carrinho/index')
 describe('Automation Exercise', () => {
 
   it('CT 1 - Cadastrar um novo usuário com sucesso', () => {
@@ -94,7 +94,29 @@ describe('Automation Exercise', () => {
 
   });
 
-   it('CT 15', () => {
+   it.only('CT 15 - Fazer pedido', () => {
+    cy.visit('/')
+    cy.get('a[href*=login]').click()
+
+    cadastro.iniciarCadastro('PGATS Aut', `pgats-aut-test-${Date.now()}@mail.com`)
+    cadastro.preencherCadastro()
+    cadastro.verificarSeCadastroFoiEfetuadoComSucesso()
+    
+    cy.get('[data-qa="continue-button"]').click()
+
+    login.verificarSeLoginFoiEfetuadoComSucesso()
+
+    produtos.acessarProdutos()
+    produtos.adicionarProdutoNoCarrinho()
+
+    cy.scrollTo('top')
+
+    carrinho.acessarCarrinho()
+    cy.get('.col-sm-6 > .btn').click()
+    carrinho.revisarPedido()
+    carrinho.inserirDescricao('Primeira compra - recem registrado')
+    carrinho.fazerPagamento()
+    carrinho.verificarPagamento()
 
   });
 

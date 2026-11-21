@@ -26,10 +26,18 @@ function verificarProdutos(){
     .and('be.visible')
 }
 
+function adicionarProdutoNoCarrinho(){
+    cy.get(':nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn').click()
+    cy.get('.modal-footer > .btn').click()
+    cy.get(':nth-child(4) > .product-image-wrapper > .single-products > .productinfo > .btn').click()
+    cy.get('.modal-footer > .btn').click()
+}
+
 module.exports = {
 acessarProdutos,
 clicarEmProduto, 
 verificarDetalhesDeProduto,
 buscarProduto,
-verificarProdutos
+verificarProdutos,
+adicionarProdutoNoCarrinho
 }
