@@ -2,6 +2,7 @@
 
 const cadastro = require('../modules/cadastro/index')
 const login = require('../modules/login/index')
+const produtos = require('../modules/produtos/index')
 
 describe('Automation Exercise', () => {
 
@@ -56,6 +57,30 @@ describe('Automation Exercise', () => {
     cadastro.iniciarCadastro('PGATS Aut', `pgats-aut-test-1791030872114@mail.com`)
 
     cadastro.verificarSeMensagemDeCadastroExistenteFoiExibida()
+
+  });
+
+  it.only('CT 8 - Verifica página de produtos e detalhes de um produto', () => {
+    cy.visit('/')
+
+    produtos.acessarProdutos()
+  
+    produtos.verificarDetalhesDeProduto()
+  });
+
+   it('CT 9', () => {
+
+  });
+
+   it('CT 10', () => {
+
+  });
+
+   it('CT 15', () => {
+
+  });
+
+   it('CT 16', () => {
 
   });
 

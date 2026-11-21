@@ -1,0 +1,16 @@
+function acessarProdutos(){
+   cy.get('.shop-menu > .nav > :nth-child(2) > a').click()
+   cy.url().should('include', '/products')
+   cy.get('.features_items').should('exist')
+}
+
+function verificarDetalhesDeProduto(){
+   cy.get(':nth-child(3) > .product-image-wrapper > .choose > .nav > li > a').click()
+   cy.url().should('include', '/product_details/1')
+   cy.get(':nth-child(5) > .btn').should('be.visible')
+}
+
+module.exports = {
+acessarProdutos,
+verificarDetalhesDeProduto
+}
