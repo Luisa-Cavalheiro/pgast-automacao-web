@@ -120,7 +120,7 @@ describe('Automation Exercise', () => {
 
   });
 
-   it'CT 16 - Fazer pedido', () => {
+   it('CT 16 - Fazer pedido', () => {
     cy.visit('/login')
 
     login.preencherLogin('pgats-aut-test-1795215430042@mail.com', '12345')
