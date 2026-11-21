@@ -71,7 +71,7 @@ describe('Automation Exercise', () => {
 
   });
 
-   it.only('CT 9 - Buscar produto', () => {
+   it('CT 9 - Buscar produto', () => {
       cy.visit('/')
 
     produtos.acessarProdutos()
