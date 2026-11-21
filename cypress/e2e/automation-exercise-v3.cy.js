@@ -82,7 +82,15 @@ describe('Automation Exercise', () => {
 
   });
 
-   it('CT 10', () => {
+   it('CT 10 - Inscrever na página', () => {
+    cy.visit('/')
+    cy.scrollTo('bottom')
+
+    cy.get('#susbscribe_email').type(`pgats-aut-test-${Date.now()}@mail.com`)
+    cy.get('#subscribe > .fa').click()
+
+    cy.get('.alert-success').should('be.visible')
+    .and('contain.text',  'You have been successfully subscribed!')
 
   });
 
