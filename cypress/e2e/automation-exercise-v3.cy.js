@@ -94,7 +94,7 @@ describe('Automation Exercise', () => {
 
   });
 
-   it.only('CT 15 - Fazer pedido', () => {
+   it('CT 15 - Fazer pedido', () => {
     cy.visit('/')
     cy.get('a[href*=login]').click()
 
