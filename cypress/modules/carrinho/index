@@ -5,14 +5,14 @@ function acessarCarrinho(){
    .and('be.visible')
 }
 
-function fazerPagamento(){
+function fazerPagamento(name, cardNumber, cvc, month, year){
     cy.get(':nth-child(7) > .btn').click()
     
-    cy.get('[data-qa="name-on-card"]').type('Teste primeira compra')
-    cy.get('[data-qa="card-number"]').type('5567990080222')
-    cy.get('[data-qa="cvc"]').type('123')
-    cy.get('[data-qa="expiry-month"]').type('7')
-    cy.get('[data-qa="expiry-year"]').type('2030')
+    cy.get('[data-qa="name-on-card"]').type(name)
+    cy.get('[data-qa="card-number"]').type(cardNumber)
+    cy.get('[data-qa="cvc"]').type(cvc)
+    cy.get('[data-qa="expiry-month"]').type(month)
+    cy.get('[data-qa="expiry-year"]').type(year)
 
     cy.get('[data-qa="pay-button"]').click()
 

@@ -94,7 +94,7 @@ describe('Automation Exercise', () => {
 
   });
 
-   it('CT 15 - Fazer pedido', () => {
+   it('CT 15 - Fazer pedido (Recém cadastrado)', () => {
     cy.visit('/')
     cy.get('a[href*=login]').click()
 
@@ -115,12 +115,28 @@ describe('Automation Exercise', () => {
     cy.get('.col-sm-6 > .btn').click()
     carrinho.revisarPedido()
     carrinho.inserirDescricao('Primeira compra - recem registrado')
-    carrinho.fazerPagamento()
+    carrinho.fazerPagamento('Teste primeira compra', '5567990080222', '123', '7', '2030')
     carrinho.verificarPagamento()
 
   });
 
-   it('CT 16', () => {
+   it'CT 16 - Fazer pedido', () => {
+    cy.visit('/login')
+
+    login.preencherLogin('pgats-aut-test-1795215430042@mail.com', '12345')
+    login.verificarSeLoginFoiEfetuadoComSucesso()
+
+    produtos.acessarProdutos()
+    produtos.adicionarProdutoNoCarrinho()
+
+    cy.scrollTo('top')
+
+    carrinho.acessarCarrinho()
+    cy.get('.col-sm-6 > .btn').click()
+    carrinho.revisarPedido()
+    carrinho.inserirDescricao('Compra qualquer')
+    carrinho.fazerPagamento('Usuario antigo', '5567990080222', '123', '7', '2032')
+    carrinho.verificarPagamento()
 
   });
 
